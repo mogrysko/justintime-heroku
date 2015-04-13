@@ -12,8 +12,9 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap
  */
- @import "bootstrap";
+ /*@import "bootstrap";*/
 
  div.addremove{
    padding: 25px 0px 0px 0px;
