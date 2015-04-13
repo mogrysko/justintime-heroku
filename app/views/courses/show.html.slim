@@ -1,0 +1,33 @@
+- content_for :showcourse do
+  ul.nav.navbar-nav.navbar-right
+    li.icon
+      a href=course_path(format: :json, download: true) data-toggle="tooltip" data-placement="bottom" title="Download JSON"
+        span.glyphicon.glyphicon-download.glyph aria-hidden="true"
+    li.icon
+      a href=course_path(format: :html, download: true) data-toggle="tooltip" data-placement="bottom" title="Download HTML"
+        span.glyphicon.glyphicon-circle-arrow-down.glyph aria-hidden="true"
+    li.icon
+      a href="/add" data-toggle="tooltip" data-placement="bottom" title="Add/Remove terms"
+        span.glyphicon.glyphicon-plus.glyph aria-hidden="true"
+        span.glyphicon.glyphicon-minus.glyph aria-hidden="true"
+
+.row
+  .page-header
+    h3
+      => @course.coursename
+      =< @course.coursetitle
+- if @course.termlists.exists?
+  - @courseterms.each do |term|
+    .well.well-sm
+      h5 = term.termname.html_safe
+      =term.definition.html_safe
+      - unless term.termlists.empty?
+        | Used in:
+        =< term.all_courses
+      - unless term.taggings.empty?
+        br
+        .tag
+          span.glyphicon.glyphicon-tags.glyph-intext aria-hidden="true"
+          =>< raw term.tags.map(&:tagname).map { |t| link_to t, tag_path(t), class: 'label label-info' }.join(' ')
+- else
+  p You have no terms!

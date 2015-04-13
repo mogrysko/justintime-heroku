@@ -1,0 +1,66 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+
+ div.addremove{
+   padding: 25px 0px 0px 0px;
+   text-align: center;
+ }
+
+ body { padding-bottom: 70px; }
+
+
+ li.icon{
+   padding: 0px 0px 0px 0px;
+   text-align: left;
+   font-size : 10px;
+ }
+ a.icon{
+   padding: 0px 50px 0px 0px;
+   text-align: center;
+   font-size : 10px;
+ }
+
+ span.glyph{
+   font-size : 20px;
+   text-align: center;
+   padding: 0px 0px -10px 0px;
+ }
+
+ span.glyph-intext{
+   font-size : 18px;
+   text-align: center;
+   vertical-align: middle;
+   padding: 0px 5px 0px 0px;
+ }
+
+div.tag{
+  padding: 10px 0px 0px 0px;
+}
+
+div.icontext{
+  padding: -10px 0px -10px 0px;
+  vertical-align: top;
+}
+
+ div.icon{
+   text-align: center;
+   vertical-align: bottom;
+ }
+
+li.jitalert {
+  list-style-type: none;
+}

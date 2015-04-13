@@ -1,0 +1,25 @@
+-if @term.errors.present?
+  .alert.alert-dismissible.alert-danger
+    button.close type="button" data-dismiss="alert" ×
+    h4 Error
+    ul
+      -for error in @term.errors.full_messages
+        li.jitalert = error
+.form-group
+  = form_for @term do |f|
+    = f.label :termname, 'Trigger text:', class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :termname, class: 'form-control'
+      br
+    = f.label :definition, 'Pop-up content:', class: 'col-lg-2 control-label'
+    br
+    br
+    .col-lg-10
+      = f.text_area :definition, :class => "tinymce", :rows => 8, :cols => 5
+      br
+    = f.label :all_tags, 'Tag(s):', class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :all_tags, class: 'form-control'
+      br
+      = f.submit class: 'btn btn-primary'
+= tinymce

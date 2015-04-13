@@ -1,0 +1,18 @@
+-if @course.errors.present?
+  .alert.alert-dismissible.alert-danger
+    button.close type="button" data-dismiss="alert" ×
+    h4 Error
+    ul
+      -for error in @course.errors.full_messages
+        li.jitalert = error
+.form-group
+  = form_for @course do |f|
+    = f.label :coursename, 'New Course ID:', class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :coursename, class: 'form-control'
+      br
+    = f.label :coursetitle, 'New Course Title:', class: 'col-lg-2 control-label'
+    .col-lg-10
+      = f.text_field :coursetitle, class: 'form-control'
+      br
+      = f.submit class: 'btn btn-primary'

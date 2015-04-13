@@ -1,0 +1,37 @@
+- content_for :termsearch do
+  form.navbar-form.navbar-left role="search"
+    .form-group
+    = form_tag(terms_path, :method => 'get', class: 'form-group') do
+      = text_field_tag :search, params[:search], placeholder: "Term name search", class: 'form-control'
+      = submit_tag "Search", :name => nil, class: 'btn btn-default btn-xs'
+.row
+  .page-header
+    h3 Dictionary
+- if params[:tag]
+  h4 Terms with the #{params[:tag]} tag
+  a href=terms_path data-toggle="tooltip" data-placement="bottom" title="Clear tag filter"
+    | (Clear tag filter)
+- elsif params[:search]
+  h4 Results for #{params[:search]} search
+  a href=terms_path data-toggle="tooltip" data-placement="bottom" title="Clear search"
+    | (Clear search)
+- @terms.each do |term|
+  .well.well-sm
+    h5 = term.termname.html_safe
+    => link_to 'Edit', edit_term_path(term)
+    | |
+    =< link_to 'Delete', term_path(term), method: :delete
+    =term.definition.html_safe
+    - unless term.termlists.empty?
+      | Used in:
+      =< term.all_courses
+    - unless term.taggings.empty?
+      br
+      .tag
+        span.glyphicon.glyphicon-tags.glyph-intext aria-hidden="true"
+        =>< raw term.tags.map(&:tagname).map { |t| link_to t, tag_path(t), class: 'label label-info' }.join(' ')
+
+/ a.icon href=edit_term_path(term) data-toggle="tooltip" data-placement="bottom" title="Edit"
+/   span.glyphicon.glyphicon-edit.glyph aria-hidden="true"
+/ a.icon href=term_path(term) data-toggle="tooltip" data-placement="bottom" title="Delete"
+/   span.glyphicon.glyphicon-erase.glyph aria-hidden="true"

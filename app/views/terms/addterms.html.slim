@@ -1,0 +1,42 @@
+- content_for :addterms do
+  form.navbar-form.navbar-left role="search"
+    .form-group
+    = form_tag('/add', :method => 'get', class: 'form-group') do
+      = text_field_tag :search, params[:search], placeholder: "Term name search", class: 'form-control'
+      = submit_tag "Search", :name => nil, class: 'btn btn-default btn-xs'
+- content_for :addterms do
+  ul.nav.navbar-nav.navbar-right
+    li.icon
+      a href=course_path(session[:course_id]) data-toggle="tooltip" data-placement="bottom" title="Submit changes"
+        span.glyphicon.glyphicon-saved.glyph aria-hidden="true"
+
+.row
+  .page-header
+    h3 Add/Remove Terms to/from #{session[:coursename]}
+- if params[:tag]
+  h4 Terms with the #{params[:tag]} tag
+  a href='/add' data-toggle="tooltip" data-placement="bottom" title="Clear tag filter"
+    | (Clear tag filter)
+- elsif params[:search]
+  h4 Results for #{params[:search]} search
+  a href='/add' data-toggle="tooltip" data-placement="bottom" title="Clear search"
+    | (Clear search)
+- @terms.each do |term|
+    .row
+      .col-md-1.addremove
+        - if has_not_added?(term)
+          = button_to 'Add', add_term_path(term), class: 'btn btn-success', remote: true
+        -else
+          = button_to 'Remove', remove_term_path(term), class: 'btn btn-default', remote: true
+      .col-md-11
+        .well.well-sm
+          h5 = term.termname
+          = term.definition.html_safe
+          - unless term.termlists.empty?
+            | Used in:
+            =< term.all_courses
+          - unless term.taggings.empty?
+            br
+            .tag
+              span.glyphicon.glyphicon-tags.glyph-intext aria-hidden="true"
+              =>< raw term.tags.map(&:tagname).map { |t| link_to t, addtag_path(t), class: 'label label-info' }.join(' ')

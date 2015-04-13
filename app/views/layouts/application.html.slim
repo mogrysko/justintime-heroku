@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    title Jit
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    = yield :head
+  body
+    - unless current_page?(root_url)
+      header.navbar.navbar-default.navbar-fixed-top
+        .container
+          .navbar-header
+            a.navbar-brand href="../"  Just-In-Time Dictionary
+            button.navbar-toggle data-target="#navbar-main" data-toggle="collapse" type="button"
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          #navbar-main.navbar-collapse.collapse
+            ul.nav.navbar-nav
+              li
+                a href=courses_path Courses
+              li
+                a href=terms_path Dictionary
+            - if content_for?(:termsearch)
+              = yield :termsearch
+            - if content_for?(:addtermsearch)
+              = yield :addtermsearch  
+            ul.nav.navbar-nav.navbar-right
+              li.icon
+                a href=new_course_path data-toggle="tooltip" data-placement="bottom" title="New Course"
+                  span.glyphicon.glyphicon-blackboard.glyph aria-hidden="true"
+              li.icon
+                a href=new_term_path data-toggle="tooltip" data-placement="bottom" title="New Term"
+                  span.glyphicon.glyphicon-pencil.glyph aria-hidden="true"
+            - if content_for?(:showcourse)
+              = yield :showcourse
+            - if content_for(:addterms)
+              = yield :addterms
+
+    .container
+      br
+      br
+      br
+      = yield

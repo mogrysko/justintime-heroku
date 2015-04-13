@@ -1,0 +1,10 @@
+toolbar:
+  - styleselect | bold italic | undo redo | link | forecolor backcolor | inserttable
+menubar: "edit insert format table"
+plugins:
+  - link
+  - textcolor
+  - table
+  - hr
+  - lists
+  - charmap
