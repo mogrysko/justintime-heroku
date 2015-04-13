@@ -1,10 +1,11 @@
 toolbar:
-  - styleselect | bold italic | undo redo | link | forecolor backcolor | inserttable
+  - styleselect | bold italic | undo redo | link | bullist | numlist | forecolor backcolor | inserttable
 menubar: "edit insert format table"
 plugins:
   - link
   - textcolor
   - table
   - hr
+  - advlist
   - lists
   - charmap
