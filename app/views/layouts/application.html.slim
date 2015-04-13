@@ -4,7 +4,7 @@ html
     meta charset="utf-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    title Jit
+    title Just-In-Time Dictionary
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -29,7 +29,7 @@ html
             - if content_for?(:termsearch)
               = yield :termsearch
             - if content_for?(:addtermsearch)
-              = yield :addtermsearch  
+              = yield :addtermsearch
             ul.nav.navbar-nav.navbar-right
               li.icon
                 a href=new_course_path data-toggle="tooltip" data-placement="bottom" title="New Course"
