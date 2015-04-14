@@ -1,26 +1,27 @@
 .row
   .page-header
     h3 Courses
-.table-responsive
-  table.table.table-striped.table-hover
-    thead
-      tr
-        th =sortable "coursename", "Course ID"
-        th =sortable "coursetitle", "Course Title"
-        th
-        th
-        th
-
-    tbody
-      - @courses.each do |course|
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead
         tr
-          td
-            = course.coursename
-          td
-            = course.coursetitle
-          td
-            = link_to 'View', course_path(course), params: {course_id: course.id}
-          td
-            = link_to 'Edit', edit_course_path(course)
-          td
-            = link_to 'Delete', course_path(course), method: :delete
+          th =sortable "coursename", "Course ID"
+          th =sortable "coursetitle", "Course Title"
+          th
+          th
+          th
+  
+      tbody
+        - @courses.each do |course|
+          tr
+            td
+              = course.coursename
+            td
+              = course.coursetitle
+            td
+              = link_to 'View', course_path(course), params: {course_id: course.id}
+            td
+              = link_to 'Edit', edit_course_path(course)
+            td
+              = link_to 'Delete', course_path(course), method: :delete
+  
